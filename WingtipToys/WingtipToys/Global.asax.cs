@@ -16,6 +16,9 @@ namespace WingtipToys
     {
         void Application_Start(object sender, EventArgs e)
         {
+            // Setup the Service Configuration
+            ServerConfig.RegisterConfig("development");
+
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

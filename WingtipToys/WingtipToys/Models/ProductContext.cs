@@ -12,6 +12,13 @@ namespace WingtipToys.Models
         {
             get
             {
+                CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
+                var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
+                if (_connect != null)
+                {
+                    return _connect;
+                }
+
                 return "WingtipToys";
             }
         }
