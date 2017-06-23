@@ -30,10 +30,17 @@ namespace WingtipToys.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(ConnectionString, throwIfV1Schema: false)
         {
         }
 
+        public static string ConnectionString
+        {
+            get
+            {
+                return "DefaultConnection";
+            }
+        }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
