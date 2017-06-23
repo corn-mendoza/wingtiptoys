@@ -42,9 +42,11 @@ namespace WingtipToys.Models
                 var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysuserdb");
                 if (_connect != null)
                 {
+                    Console.WriteLine($"Using connection string '{_connect}' for users");
                     return _connect;
                 }
 
+                Console.WriteLine($"Using default connection string for users");
                 return "DefaultConnection";
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 namespace WingtipToys.Models
 {
     public class ProductContext : DbContext
@@ -16,8 +17,11 @@ namespace WingtipToys.Models
                 var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
                 if (_connect != null)
                 {
+                    Console.WriteLine($"Using connection string '{_connect}' for catalog");
                     return _connect;
                 }
+
+                Console.WriteLine($"Using default connection string for cataglog");
 
                 return "WingtipToys";
             }
