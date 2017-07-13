@@ -15,7 +15,7 @@ namespace WingtipToys.Models
             {
                 CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
                 var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
-                if (_connect != null)
+                if (!string.IsNullOrEmpty(_connect))
                 {
                     Console.WriteLine($"Using connection string '{_connect}' for catalog");
                     return _connect;
