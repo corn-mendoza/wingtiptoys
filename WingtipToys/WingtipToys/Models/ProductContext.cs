@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
 namespace WingtipToys.Models
 {
     public class ProductContext : DbContext
@@ -7,6 +9,13 @@ namespace WingtipToys.Models
         public ProductContext()
           : base(ConnectionString)
         {
+            this.SetCommandTimeOut(300);
+        }
+
+        public void SetCommandTimeOut(int Timeout)
+        {
+            var objectContext = (this as IObjectContextAdapter).ObjectContext;
+            objectContext.CommandTimeout = Timeout;
         }
 
         public static string ConnectionString

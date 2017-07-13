@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WingtipToys.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace WingtipToys.Models
 {
@@ -32,6 +33,13 @@ namespace WingtipToys.Models
         public ApplicationDbContext()
             : base(ConnectionString, throwIfV1Schema: false)
         {
+            this.SetCommandTimeOut(300);
+        }
+
+        public void SetCommandTimeOut(int Timeout)
+        {
+            var objectContext = (this as IObjectContextAdapter).ObjectContext;
+            objectContext.CommandTimeout = Timeout;
         }
 
         public static string ConnectionString
