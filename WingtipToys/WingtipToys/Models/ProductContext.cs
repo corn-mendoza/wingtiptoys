@@ -9,7 +9,7 @@ namespace WingtipToys.Models
         public ProductContext()
           : base(ConnectionString)
         {
-            this.SetCommandTimeOut(300);
+            //this.SetCommandTimeOut(30);
         }
 
         public void SetCommandTimeOut(int Timeout)
@@ -22,13 +22,17 @@ namespace WingtipToys.Models
         {
             get
             {
-                CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
-                var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
-                if (!string.IsNullOrEmpty(_connect))
+                try
                 {
-                    Console.WriteLine($"Using connection string '{_connect}' for catalog");
-                    return _connect;
+                    CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
+                    var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
+                    if (!string.IsNullOrEmpty(_connect))
+                    {
+                        Console.WriteLine($"Using connection string '{_connect}' for catalog");
+                        return _connect;
+                    }
                 }
+                catch { }
 
                 Console.WriteLine($"Using default connection string for cataglog");
 

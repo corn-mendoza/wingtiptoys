@@ -33,7 +33,7 @@ namespace WingtipToys.Models
         public ApplicationDbContext()
             : base(ConnectionString, throwIfV1Schema: false)
         {
-            this.SetCommandTimeOut(300);
+            //this.SetCommandTimeOut(30);
         }
 
         public void SetCommandTimeOut(int Timeout)
@@ -46,13 +46,17 @@ namespace WingtipToys.Models
         {
             get
             {
-                CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
-                var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysuserdb");
-                if (!string.IsNullOrEmpty(_connect))
+                try
                 {
-                    Console.WriteLine($"Using connection string '{_connect}' for users");
-                    return _connect;
+                    CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
+                    var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysuserdb");
+                    if (!string.IsNullOrEmpty(_connect))
+                    {
+                        Console.WriteLine($"Using connection string '{_connect}' for users");
+                        return _connect;
+                    }
                 }
+                catch { }
 
                 Console.WriteLine($"Using default connection string for users");
                 return "DefaultConnection";
