@@ -57,9 +57,9 @@ namespace WingtipToys.Models
                     }
                 }
                 catch { }
-
-                Console.WriteLine($"Using default connection string for users");
-                return "DefaultConnection";
+                var _s = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                Console.WriteLine($"Using default connection string for users {_s}");
+                return _s;
             }
         }
         public static ApplicationDbContext Create()

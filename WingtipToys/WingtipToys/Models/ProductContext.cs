@@ -34,9 +34,10 @@ namespace WingtipToys.Models
                 }
                 catch { }
 
-                Console.WriteLine($"Using default connection string for cataglog");
+                var _s = System.Configuration.ConfigurationManager.ConnectionStrings["WingtipToys"].ConnectionString;
+                Console.WriteLine($"Using default connection string for catalog {_s}");
 
-                return "WingtipToys";
+                return _s;
             }
         }
 
