@@ -52,13 +52,13 @@ namespace WingtipToys.Models
                     var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysuserdb");
                     if (!string.IsNullOrEmpty(_connect))
                     {
-                        Console.WriteLine($"Using connection string '{_connect}' for users");
+                        Console.WriteLine($"Using UPS: '{_connect}' for users");
                         return _connect;
                     }
                 }
                 catch { }
                 var _s = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                Console.WriteLine($"Using default connection string for users {_s}");
+                Console.WriteLine($"Using web.config: '{_s}' for users ");
                 return _s;
             }
         }

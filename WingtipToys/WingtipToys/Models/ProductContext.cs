@@ -28,14 +28,14 @@ namespace WingtipToys.Models
                     var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysdb");
                     if (!string.IsNullOrEmpty(_connect))
                     {
-                        Console.WriteLine($"Using connection string '{_connect}' for catalog");
+                        Console.WriteLine($"Using UPS: '{_connect}' for catalog");
                         return _connect;
                     }
                 }
                 catch { }
 
                 var _s = System.Configuration.ConfigurationManager.ConnectionStrings["WingtipToys"].ConnectionString;
-                Console.WriteLine($"Using default connection string for catalog {_s}");
+                Console.WriteLine($"Using web.config: '{_s}' for catalog");
 
                 return _s;
             }
