@@ -117,7 +117,7 @@ namespace WingtipToys
 
         public string getConnectionStringForDbService(string serviceTypeName, string serviceInstanceName = "", IDbConnectionStringFormatter formatter = null)
         {
-            string connectionString = "";
+            string connectionString = string.Empty;
 
             if (Object.ReferenceEquals(null, vcap_services_data) == false)
             {
@@ -128,6 +128,11 @@ namespace WingtipToys
                     // Default to use a Basic MS SQL Server connection string, if our formatter was not specified.
                     if (formatter == null)
                         formatter = new BasicSQLServerConnectionStringFormatter();
+
+                    // conectionstring is defined so use the whole string
+                    connectionString = Convert.ToString(serviceInfo.credentials.connectionstring);
+                    if (!string.IsNullOrEmpty(connectionString))
+                        return connectionString;
 
                     var host = Convert.ToString(serviceInfo.credentials.hostname);
                     var username = Convert.ToString(serviceInfo.credentials.username);

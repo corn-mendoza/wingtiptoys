@@ -48,6 +48,13 @@ namespace WingtipToys.Models
             {
                 try
                 {
+                    var _cfgcon = ServerConfig.Configuration.GetSection("ConnectionStrings")["wingtiptoysuserdb"];
+                    if (_cfgcon != null)
+                    {
+                        Console.WriteLine($"Using appsettings: '{_cfgcon}' for users");
+                        _cfgcon.ToString();
+                    }
+
                     CFEnvironmentVariables _env = new CFEnvironmentVariables(ServerConfig.Configuration);
                     var _connect = _env.getConnectionStringForDbService("user-provided", "wingtiptoysuserdb");
                     if (!string.IsNullOrEmpty(_connect))

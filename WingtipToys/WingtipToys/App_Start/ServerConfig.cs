@@ -19,6 +19,7 @@ namespace WingtipToys
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("secrets/appsettings.secrets.json", optional: true, reloadOnChange: false)
                 .AddCloudFoundry()
                 .AddEnvironmentVariables();
 
